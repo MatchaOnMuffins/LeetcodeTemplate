@@ -5,7 +5,9 @@ try:
     with open("signature.json", "r") as f:
         signature_json = json.load(f)
 except FileNotFoundError:
-    print("signature.json not found. Please create signature.json file")
+    print(
+        "signature.json not found. A new one will be created. Please edit the file with the correct signature and test cases."
+    )
     with open("signature.json", "w") as f:
         f.write("""{
     "problemNumber": 605,
@@ -43,10 +45,10 @@ except FileNotFoundError:
 
 if not os.path.exists("include"):
     os.makedirs("include")
-    
+
 if not os.path.exists("src"):
     os.makedirs("src")
-    
+
 if not os.path.exists("tests"):
     os.makedirs("tests")
 
@@ -90,21 +92,23 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
 endforeach()
 """
 
+
 def get_function_signature(signature_json):
     return f"{signature_json['returnType']} {signature_json['functionName']}({', '.join(signature_json['parameters'])})"
+
 
 def get_impl_function_declaration(signature_json):
     return f"{signature_json['returnType']} Solution::{signature_json['functionName']}({', '.join(signature_json['parameters'])})"
 
+
 def get_include_list(signature_json):
-
-
     include_list = ""
 
     for include in signature_json["includeList"]:
         include_list += f"#include <{include}>\n"
-        
+
     return include_list
+
 
 HEADER_TEMPLATE = f"""
 #ifndef SOLUTION_{signature_json["problemNumber"]}_H
@@ -141,6 +145,7 @@ using namespace std;
 
 """
 
+
 def make_tests(signature_json):
     tests = TEST_TEMPLATE
     for test_arr in signature_json["testCases"]:
@@ -150,19 +155,18 @@ def make_tests(signature_json):
   ASSERT_EQ(Solution::{signature_json["functionName"]}({",".join(test_arr["inputParams"])}), {test_arr["expectedOutput"]}) << "Assertion Failed";
 }}
 """
-    
+
     return tests
-    
+
 
 with open("CMakeLists.txt", "w") as f:
     f.write(CMAKELISTS_TEMPLATE)
-    
+
 with open(f"include/solution_{signature_json["problemNumber"]}.h", "w") as f:
     f.write(HEADER_TEMPLATE)
-    
-with open(f"src/solution.cpp", "w") as f:
+
+with open("src/solution.cpp", "w") as f:
     f.write(IMPLEMENTATION_TEMPLATE)
-    
-with open(f"tests/tests.cpp", "w") as f:
+
+with open("tests/tests.cpp", "w") as f:
     f.write(make_tests(signature_json))
-    
