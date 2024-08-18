@@ -1,12 +1,14 @@
 import os
 
-from . import (
+from .config import template_config
+
+from .generators import (
     generate_cmake,
     generate_header,
-    template_config,
     generate_implementation,
     generate_tests,
 )
+
 
 def main():
     config = template_config.Config()
@@ -19,7 +21,6 @@ def main():
 
     if not os.path.exists("tests"):
         os.makedirs("tests")
-
 
     with open("CMakeLists.txt", "w") as f:
         f.write(generate_cmake.generate_cmake())
@@ -35,6 +36,7 @@ def main():
     with open("tests/tests.cpp", "w") as f:
         tests = generate_tests.Tests(config)
         f.write(tests.get_tests_template())
-        
+
+
 if __name__ == "__main__":
     main()

@@ -81,15 +81,12 @@ class Config:
             raise ValueError("testCases not found in signature.json")
         return self.signature_json["testCases"]
 
-
     def get_function_signature(self):
         return f"{self.get_return_type_config()} {self.get_function_name_config()}({', '.join(self.get_parameters_config())})"
-
 
     def get_impl_function_declaration(self):
         return f"{self.get_return_type_config()} Solution::{self.get_function_name_config()}({', '.join(self.get_parameters_config())})"
         # return f"{signature_json['returnType']} Solution::{signature_json['functionName']}({', '.join(signature_json['parameters'])})"
-
 
     def get_include_list(self):
         include_list = ""

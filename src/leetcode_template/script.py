@@ -1,5 +1,6 @@
 from . import generate_template
 
+
 def main():
     generate_template.main()
 

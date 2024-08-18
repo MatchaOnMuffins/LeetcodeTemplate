@@ -1,12 +1,11 @@
-from . import template_config
+import leetcode_template.config.template_config as template_config
+
 
 class Implementation:
-    def __init__(self, config:template_config.Config):
+    def __init__(self, config: template_config.Config):
         self.config = config
-    
+
     def get_implementation_template(self):
-
-
         IMPLEMENTATION_TEMPLATE = f"""#include "solution_{self.config.get_problem_number_config()}.h"
 
 using namespace std;

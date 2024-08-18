@@ -1,5 +1,4 @@
 def generate_cmake():
-
     CMAKELISTS_TEMPLATE = """# set the project name to the name of the current directory
 get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
