@@ -1,11 +1,9 @@
 [project]
 name = "leetcode_template"
 version = "0.1.0"
-
 description = "Generate leetcode template"
-
 readme = "README.md"
-
+license = {text = "MIT License"}
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -19,3 +17,8 @@ build-backend = "setuptools.build_meta"
 
 [project.scripts]
 generate = "leetcode_template.script:main"
+
+
+[project.urls]
+Repository = "https://github.com/MatchaOnMuffins/LeetcodeTemplate"
+Issues = "https://github.com/MatchaOnMuffins/LeetcodeTemplate/issues"
