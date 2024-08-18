@@ -1,5 +1,7 @@
+from . import generate_template
+
 def main():
-    from . import generate_template
+    generate_template.main()
 
 
 if __name__ == "__main__":
