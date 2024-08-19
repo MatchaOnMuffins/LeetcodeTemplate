@@ -10,8 +10,8 @@ from .generators import (
 )
 
 
-def main():
-    config = template_config.Config()
+def main(config_path="signature.json"):
+    config = template_config.Config(config_path)
 
     if not os.path.exists("include"):
         os.makedirs("include")
