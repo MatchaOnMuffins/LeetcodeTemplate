@@ -1,6 +1,6 @@
 [project]
 name = "leetcode_template"
-version = "0.1.2"
+version = "0.1.3"
 description = "Generate leetcode template"
 readme = "README.md"
 license = {text = "MIT License"}
